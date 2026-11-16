@@ -1,0 +1,52 @@
+# Весь стек одной командой:  docker compose up -d --build
+# Модели скачиваются один раз:  docker compose exec ollama ollama pull bge-m3 && docker compose exec ollama ollama pull qwen2.5:3b
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    deploy:                      # видеокарта NVIDIA; без неё удалите блок deploy — будет работать на процессоре
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    volumes:
+      - qdrant:/qdrant/storage
+    ports:
+      - "6333:6333"
+
+  api:
+    build: .
+    depends_on: [ollama, qdrant]
+    environment:
+      OLLAMA_URL: http://ollama:11434
+      VECTOR_STORE: qdrant
+      QDRANT_URL: http://qdrant:6333
+      LLM_MODEL: qwen2.5:3b
+      EMBED_MODEL: bge-m3
+      API_KEY: ${API_KEY:-}      # задайте в .env, если API нужно закрыть ключом
+    ports:
+      - "8000:8000"
+
+  n8n:
+    image: n8nio/n8n:latest
+    depends_on: [api]
+    environment:
+      GENERIC_TIMEZONE: Asia/Yekaterinburg
+      N8N_SECURE_COOKIE: "false"   # только для локальной работы по http
+    volumes:
+      - n8n:/home/node/.n8n
+    ports:
+      - "5678:5678"
+
+volumes:
+  ollama:
+  qdrant:
+  n8n:

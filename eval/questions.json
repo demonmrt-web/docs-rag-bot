@@ -1,0 +1,14 @@
+[
+  {"q": "На сколько процентов должна подорожать монета, чтобы бот начал следить за её максимумом?", "source": "poloniex-multi-bot.md", "keyword": "3"},
+  {"q": "Какой процент падения от цены входа включает стоп-лосс?", "source": "poloniex-multi-bot.md", "keyword": "12"},
+  {"q": "Какие права должен иметь API-ключ биржи для бота?", "source": "poloniex-multi-bot.md", "keyword": "withdraw"},
+  {"q": "На каком адресе открывается веб-интерфейс бота?", "source": "poloniex-multi-bot.md", "keyword": "8080"},
+  {"q": "Какой командой запустить сервер моста для расширения?", "source": "claude-browser-bridge.md", "keyword": "serve"},
+  {"q": "Как создать ключ доступа для моста?", "source": "claude-browser-bridge.md", "keyword": "setup"},
+  {"q": "Какую ошибку с повторным запуском сервера на одном порту нашли при разработке моста?", "source": "claude-browser-bridge.md", "keyword": "порт"},
+  {"q": "Какая модель Whisper используется для субтитров?", "source": "autosubtitles.md", "keyword": "large-v3-turbo"},
+  {"q": "Какой флаг нужен, чтобы запустить субтитры на процессоре без видеокарты?", "source": "autosubtitles.md", "keyword": "--cpu"},
+  {"q": "Что делает режим со сценарием в приложении для субтитров?", "source": "autosubtitles.md", "keyword": "текст"},
+  {"q": "Какая столица Франции?", "source": null, "keyword": null},
+  {"q": "Сколько стоит подписка на Claude Code?", "source": null, "keyword": null}
+]
