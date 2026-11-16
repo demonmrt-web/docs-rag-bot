@@ -36,7 +36,7 @@ services:
       - "8000:8000"
 
   n8n:
-    image: n8nio/n8n:latest
+    image: docker.n8n.io/n8nio/n8n:latest
     depends_on: [api]
     environment:
       GENERIC_TIMEZONE: Asia/Yekaterinburg
